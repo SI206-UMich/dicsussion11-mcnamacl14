@@ -42,12 +42,10 @@ def create_patients_table(cur, conn):
     cur.execute("DROP TABLE IF EXISTS Patients")
     cur.execute("CREATE TABLE Patients(pet_id INTEGER PRIMARY KEY, name TEXT, species_id INTEGER, age INTEGER, cuteness INTEGER, aggressiveness INTEGER)")
     conn.commit()
-    
-    pass
-
 
 # ADD FLUFFLE TO THE TABLE
 def add_fluffle(cur, conn):
+    cur.execute('insert into Patients(pet_id, name, species_id, age, cuteness, aggressiveness)')
 
 
     conn.commit()
