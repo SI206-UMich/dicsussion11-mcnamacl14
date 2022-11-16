@@ -46,8 +46,6 @@ def create_patients_table(cur, conn):
 # ADD FLUFFLE TO THE TABLE
 def add_fluffle(cur, conn):
     cur.execute('insert into Patients(pet_id, name, species_id, age, cuteness, aggressiveness) values(?, ?, ?, ?, ?, ?)', (0, "Fluffle", 0, 3, 90, 100)) 
-
-
     conn.commit()
     pass
     
@@ -62,9 +60,12 @@ def add_pets_from_json(filename, cur, conn):
     file_data = f.read()
     f.close()
     json_data = json.loads(file_data)
+    x = 1
+    for dict in json_data:
+        cur.execute("insert into Patients(pet_id, name, species_id, age, cuteness, aggressiveness) values(?, ?, ?, ?, ?, ?)", (x, dict["name"], dict["species"], int(dict["age"]), int(dict["cuteness"]), int(dict["aggressiveness"])))
+        x+=1
+    conn.commit()
 
-    # THE REST IS UP TO YOU
-    pass
 
 
 # TASK 3
